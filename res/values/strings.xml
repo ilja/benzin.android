@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hier een bar chart</string>
+	<string name="app_name">Benzin</string>
+	<string name="add_filling">Add filling</string>
+	<string name="settings_label">Settings</string>
+	<string name="show_all_label">Show all fillings</string>
+	<string name="lbl_date">Date</string>
+	<string name="lbl_odometer">Odometer</string>
+	<string name="lbl_amount">Amount</string>
+	<string name="lbl_price">Price</string>
+	<string name="btn_save_filling">Save filling</string>
+	<string name="add_filling_title">Add a new filling</string> 
+</resources>
