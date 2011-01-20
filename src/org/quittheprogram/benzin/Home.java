@@ -35,7 +35,7 @@ public class Home extends Activity implements OnClickListener {
     		startActivity(new Intent(this, Prefs.class));
     		return true;
     	case R.id.show_all:
-    		startActivity(new Intent(this, Prefs.class));
+    		startActivity(new Intent(this, Fillings.class));
     		return true;
     	}
     	return false;

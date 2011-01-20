@@ -11,4 +11,5 @@
 	<string name="lbl_price">Price</string>
 	<string name="btn_save_filling">Save filling</string>
 	<string name="add_filling_title">Add a new filling</string> 
+	<string name="fillings_title">All fillings</string>
 </resources>
