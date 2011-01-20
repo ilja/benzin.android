@@ -12,4 +12,5 @@
 	<string name="btn_save_filling">Save filling</string>
 	<string name="add_filling_title">Add a new filling</string> 
 	<string name="fillings_title">All fillings</string>
+	<string name="empty">No fillings!</string>
 </resources>

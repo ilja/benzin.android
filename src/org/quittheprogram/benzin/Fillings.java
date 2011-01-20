@@ -1,6 +1,7 @@
 package org.quittheprogram.benzin;
 
 import android.app.ListActivity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.*;
 
@@ -11,8 +12,16 @@ public class Fillings extends ListActivity {
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
-		setListAdapter(new ArrayAdapter<String>(this,
-		          android.R.layout.simple_list_item_1, lv_arr));
-		  getListView().setTextFilterEnabled(true);		
+		DatabaseHelper dbHelper = new DatabaseHelper(this);
+	    Cursor cursor = dbHelper.getFillings();
+        startManagingCursor(cursor);
+        
+        
+       
+		
+		//setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lv_arr));
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.filling, cursor, dbHelper.FROM, dbHelper.TO);
+        setListAdapter(adapter);
+		getListView().setTextFilterEnabled(true);		
 	}
 }

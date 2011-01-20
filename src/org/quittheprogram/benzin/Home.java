@@ -2,12 +2,14 @@ package org.quittheprogram.benzin;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 public class Home extends Activity implements OnClickListener {
     /** Called when the activity is first created. */
@@ -18,6 +20,12 @@ public class Home extends Activity implements OnClickListener {
         
         View addFilling = findViewById(R.id.add_filling);
         addFilling.setOnClickListener(this);
+        
+        TextView tv = (TextView)findViewById(R.id.home_text);
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        Cursor cursor = dbHelper.getFillings();
+        startManagingCursor(cursor);
+        tv.setText("Total fillings: " + cursor.getCount());
     }
     
     @Override
