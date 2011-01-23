@@ -9,8 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 
@@ -35,7 +33,7 @@ public class Fillings extends ListActivity {
        
 		
 		//setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lv_arr));
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.filling, cursor, dbHelper.FROM, dbHelper.TO);
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.filling, cursor, DatabaseHelper.FROM, DatabaseHelper.TO);
         setListAdapter(adapter);
 		getListView().setTextFilterEnabled(true);		
 	}
@@ -67,8 +65,11 @@ public class Fillings extends ListActivity {
 		Cursor c = (Cursor)getListView().getAdapter().getItem(id);
 		
 		Bundle bundle = new Bundle();
-		//bundle.putLong("id", c.getLong(0));
+		bundle.putLong("filling_id", c.getLong(0));
 		bundle.putString("Date", c.getString(1));
+		bundle.putInt("Odometer", c.getInt(2));
+		bundle.putString("Amount",c.getString(3));
+		bundle.putString("Price",c.getString(4));
 		Intent intent = new Intent();
 		intent.setClass(this, AddFilling.class);
 		intent.putExtras(bundle);

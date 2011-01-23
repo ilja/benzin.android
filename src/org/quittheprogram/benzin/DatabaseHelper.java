@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	static final String ORDER_BY = "Date DESC";
 	
 	//static final String[] FROM = { colID, colDate, colOdometer, colAmount, colPrice, };
-	static final String[] FROM = { _ID, colDate };
+	static final String[] FROM = { _ID, colDate, colOdometer, colAmount, colPrice };
 	static final int[] TO = { R.id.rowid, R.id.rowDate };
 
 	public DatabaseHelper(Context context) {
@@ -48,15 +48,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		  onCreate(db);
 	}
 	
-	public void saveFilling(Date date, int odometer, double amount, double price){
+	public void saveFilling(Date date, int odometer, double amount, double price, long _id){
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
 		cv.put(colDate, date.toString());
 		cv.put(colOdometer, odometer);
 		cv.put(colAmount, amount);
 		cv.put(colPrice, price);
-		db.insert(fillingsTable, _ID, cv);
+		
+		if(_id == 0) {
+			db.insert(fillingsTable, _ID, cv);
+		}
+		else {		
+			db.update(fillingsTable, cv, _ID+"=?", new String[] {String.valueOf(_id)});
+		}
+		
 		db.close();
+	}
+	
+	public Cursor getFilling(long id){
+		SQLiteDatabase db = this.getReadableDatabase();
+		
+		Cursor cursor = db.query(fillingsTable, FROM, _ID+"=?", new String[]{Long.toString(id)}, null, null, null);
+		cursor.moveToFirst();
+		return cursor;
 	}
 	
 	public Cursor getFillings(){

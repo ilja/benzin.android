@@ -11,4 +11,19 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content" 
 		android:layout_toRightOf="@id/rowid" />
+	<TextView 
+		android:id="@+id/rowOdometer" 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:layout_toRightOf="@id/rowDate" />
+	<TextView 
+		android:id="@+id/rowAmount" 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:layout_toRightOf="@id/rowOdometer" />
+	<TextView 
+		android:id="@+id/rowPrice" 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:layout_toRightOf="@id/rowAmount" />
 </RelativeLayout>
