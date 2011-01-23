@@ -16,6 +16,8 @@ import android.widget.SimpleCursorAdapter;
 
 public class Fillings extends ListActivity {	
 		
+	private static final int EDIT_FILLING = 0;
+
 	@Override	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -52,11 +54,25 @@ public class Fillings extends ListActivity {
 		
 		switch (item.getItemId()){
 		case R.id.edit_filling:
-			startActivity(new Intent(this, AddFilling.class));
+			//startActivity(new Intent(this, AddFilling.class));
+			editFilling(info.position);
 			return true;
 		default: 
 			return super.onContextItemSelected(item);
 		}
 		
+	}
+	
+	public void editFilling(int id){
+		Cursor c = (Cursor)getListView().getAdapter().getItem(id);
+		
+		Bundle bundle = new Bundle();
+		//bundle.putLong("id", c.getLong(0));
+		bundle.putString("Date", c.getString(1));
+		Intent intent = new Intent();
+		intent.setClass(this, AddFilling.class);
+		intent.putExtras(bundle);
+		
+		startActivityForResult(intent, EDIT_FILLING);
 	}
 }
