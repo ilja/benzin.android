@@ -13,4 +13,5 @@
 	<string name="add_filling_title">Add a new filling</string> 
 	<string name="fillings_title">All fillings</string>
 	<string name="empty">No fillings!</string>
+	<string name="edit_filling">Edit</string>
 </resources>
