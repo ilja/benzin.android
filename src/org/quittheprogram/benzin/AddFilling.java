@@ -33,34 +33,26 @@ public class AddFilling extends Activity implements OnClickListener {
 	    //are we trying to edit?
 	    Bundle bundle = getIntent().getExtras();
 	    if(bundle != null){ 
-	    	    
+	    	
+	    	// set id of object, so we can save changes to the same object
 		    this.filling_id = bundle.getLong("filling_id");
 		    
 		    Cursor c = dbHelper.getFilling(filling_id);
 		    if (c.moveToFirst()){
-		    //String dateString = bundle.getString("Date");
-		    	
-			    
 			    DatePicker datePicker = (DatePicker)findViewById(R.id.date);
 			    EditText odometer = (EditText)findViewById(R.id.odometer);
 			    EditText amount = (EditText)findViewById(R.id.amount);
 			    EditText price = (EditText)findViewById(R.id.price);
-			    
-			    	    
+			    		    	    
 			    Date date = new Date(java.sql.Date.parse(c.getString(1)));
-			    
-			    Calendar calendar = Calendar.getInstance();			    
-			    calendar.setTime(date);
-			    
-			    //odometer.setText(c.getInt(2));
-			    //amount.setText(Double.toString(c.getDouble(3)));
-			    //price.setText(bundle.getString("Price"));		    
-				
-			    datePicker.updateDate(calendar.get(Calendar.YEAR) -1900, calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-		    }
-		   	   
-	    }
-	    
+			    			    
+			    // add values to form
+			    odometer.setText(Integer.toString(c.getInt(2)));
+			    amount.setText(Double.toString(c.getDouble(3)));
+			    price.setText(Double.toString(c.getDouble(4)));
+			    datePicker.updateDate(date.getYear()+1900, date.getMonth(), date.getDate());
+		    }		   	   
+	    }	    
 	}
 
 	public void onClick(View v) {
