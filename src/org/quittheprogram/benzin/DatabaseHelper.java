@@ -74,6 +74,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return cursor;
 	}
 	
+	public void deleteFilling(long id){
+		SQLiteDatabase db = this.getReadableDatabase();
+		
+		int c = db.delete(fillingsTable, _ID+"=?", new String[]{Long.toString(id)});
+		//todo check c = 1
+		db.close();
+	}
+	
 	public Cursor getFillings(){
 		// Perform a managed query. The Activity will handle closing
 		// and re-querying the cursor when needed.

@@ -15,6 +15,8 @@ import android.widget.SimpleCursorAdapter;
 public class Fillings extends ListActivity {	
 		
 	private static final int EDIT_FILLING = 0;
+	DatabaseHelper dbHelper;
+	 
 
 	@Override	
 	public void onCreate(Bundle savedInstanceState){
@@ -24,7 +26,7 @@ public class Fillings extends ListActivity {
 		registerForContextMenu(getListView());
 		//getListView().setOnCreateContextMenuListener(this);
 		
-		DatabaseHelper dbHelper = new DatabaseHelper(this);
+		dbHelper = new DatabaseHelper(this);
 	    Cursor cursor = dbHelper.getFillings();
         startManagingCursor(cursor);
         
@@ -55,10 +57,21 @@ public class Fillings extends ListActivity {
 			//startActivity(new Intent(this, AddFilling.class));
 			editFilling(info.position);
 			return true;
+		case R.id.delete_filling:
+			deleteFilling(info.position);
+			return true;
 		default: 
 			return super.onContextItemSelected(item);
 		}
 		
+	}
+	
+	public void deleteFilling(int id){
+		Cursor c =  (Cursor)getListView().getAdapter().getItem(id);
+		dbHelper = new DatabaseHelper(this);
+		dbHelper.deleteFilling(c.getLong(0));
+		
+		((SimpleCursorAdapter)getListView().getAdapter()).getCursor().requery();		
 	}
 	
 	public void editFilling(int id){

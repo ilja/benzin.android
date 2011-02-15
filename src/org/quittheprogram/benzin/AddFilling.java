@@ -72,8 +72,8 @@ public class AddFilling extends Activity implements OnClickListener {
     				this.filling_id
     				);
     		
-    		Intent i = new Intent(this, Home.class);
-    		startActivity(i);
+    		//Intent i = new Intent(this, Home.class);
+    		//startActivity(i);
     		finish();
     		break;
     	}		

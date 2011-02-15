@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:id="@+id/edit_filling" android:title="@string/edit_filling" />
+	<item android:id="@+id/delete_filling" android:title="@string/delete_filling" />
 </menu>
