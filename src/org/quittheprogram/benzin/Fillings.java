@@ -56,7 +56,7 @@ public class Fillings extends ListActivity {
 					//android.text.format.DateFormat dateFormat = new android.text.format.DateFormat();
 					
 					//String formattedDate = (String) android.text.format.DateFormat.format("yyyy-MM-dd", new java.util.Date());
-					String formattedDate = (String) android.text.format.DateFormat.format("yyyy-MM-dd hh:mm", new Date(createDate)); 
+					String formattedDate = (String) android.text.format.DateFormat.format("dd MMMM yyyy hh:mm", new Date(createDate)); 
 					
 					((TextView) view).setText(formattedDate);
 					return true;
