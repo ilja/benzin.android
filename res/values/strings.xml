@@ -15,4 +15,7 @@
 	<string name="empty">No fillings!</string>
 	<string name="edit_filling">Edit</string>
 	<string name="delete_filling">Delete</string>
+	<string name="lbl_litre">ℓ</string>
+	<string name="lbl_euro">€</string>
+	<string name="lbl_km">Km:</string>
 </resources>

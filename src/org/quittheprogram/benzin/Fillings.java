@@ -13,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.ArrayAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
@@ -29,20 +28,12 @@ public class Fillings extends ListActivity {
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
-		// register all items in list for a context menu
 		registerForContextMenu(getListView());
-		//getListView().setOnCreateContextMenuListener(this);
 		
 		dbHelper = new DatabaseHelper(this);
 	    Cursor cursor = dbHelper.getFillings();
         startManagingCursor(cursor);
-        
-       
-        
-       
-		
-		//setListAdapter(new ArrayAdapter<String>(this, android.R.layout.two_line_list_item, cursor.get));
-        //SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.filling, cursor, DatabaseHelper.FROM, DatabaseHelper.TO);
+             
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.filling, cursor, DatabaseHelper.FROM, DatabaseHelper.TO);
         
         ViewBinder viewBinder = new ViewBinder() {
@@ -52,10 +43,6 @@ public class Fillings extends ListActivity {
 				if(view.getId() == R.id.rowDate){
 					String createDate = cursor.getString(1);
 					
-					//DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
-					//android.text.format.DateFormat dateFormat = new android.text.format.DateFormat();
-					
-					//String formattedDate = (String) android.text.format.DateFormat.format("yyyy-MM-dd", new java.util.Date());
 					String formattedDate = (String) android.text.format.DateFormat.format("dd MMMM yyyy hh:mm", new Date(createDate)); 
 					
 					((TextView) view).setText(formattedDate);
@@ -84,7 +71,6 @@ public class Fillings extends ListActivity {
 		
 		switch (item.getItemId()){
 		case R.id.edit_filling:
-			//startActivity(new Intent(this, AddFilling.class));
 			editFilling(info.position);
 			return true;
 		case R.id.delete_filling:

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Odo:" />
+        android:text="@string/lbl_km" />
 
     <TextView
         android:id="@+id/rowOdometer"
@@ -23,8 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/lblOdometer"
-        android:text="123456" />
+        android:layout_toRightOf="@+id/lblOdometer" />
 
     <TextView
         android:id="@+id/rowPrice"
@@ -32,8 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="5dp"
-        android:text="84.65" />
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:id="@+id/lblPrice"
@@ -41,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/rowPrice"
-        android:text="€" />
+        android:text="@string/lbl_euro" />
 
     <TextView
         android:id="@+id/rowAmount"
@@ -50,8 +48,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="15dp"
-        android:layout_toLeftOf="@+id/lblPrice"
-        android:text="66.20" />
+        android:layout_toLeftOf="@+id/lblPrice" />
 
     <TextView
         android:id="@+id/lblAmount"
@@ -59,15 +56,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/rowAmount"
-        android:text="ℓ" />
+        android:text="@string/lbl_litre" />
 
     <TextView
         android:id="@+id/rowDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/lblOdometer"
-        android:text="30 jan 2012 15:34"
+        android:layout_below="@+id/lblOdometer"        
         android:textSize="10dp" />
 
 </RelativeLayout>
