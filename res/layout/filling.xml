@@ -1,35 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" 
-	android:layout_height="fill_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-	<TextView
-	    android:id="@+id/rowid"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:visibility="gone" />
+      <TextView
+      android:id="@+id/rowid"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="gone" />
+    
+    <TextView
+        android:id="@+id/lblOdometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Odo:" />
 
-	<TextView 
-		android:id="@+id/rowDate" 
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:layout_toRightOf="@id/rowid"/>
-	<TextView 
-		android:id="@+id/rowOdometer" 
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:layout_toRightOf="@id/rowDate"		
-		android:layout_marginLeft="10dp" />
-	<TextView 
-		android:id="@+id/rowAmount" 
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:layout_toRightOf="@id/rowOdometer"
-		android:layout_marginLeft="10dp" />
-	<TextView 
-		android:id="@+id/rowPrice" 
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content" 
-		android:layout_toRightOf="@id/rowAmount"
-		android:layout_marginLeft="10dp" />
+    <TextView
+        android:id="@+id/rowOdometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/lblOdometer"
+        android:text="123456" />
+
+    <TextView
+        android:id="@+id/rowPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:text="84.65" />
+
+    <TextView
+        android:id="@+id/lblPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/rowPrice"
+        android:text="€" />
+
+    <TextView
+        android:id="@+id/rowAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toLeftOf="@+id/lblPrice"
+        android:text="66.20" />
+
+    <TextView
+        android:id="@+id/lblAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/rowAmount"
+        android:text="ℓ" />
+
+    <TextView
+        android:id="@+id/rowDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lblOdometer"
+        android:text="30 jan 2012 15:34"
+        android:textSize="10dp" />
+
 </RelativeLayout>
