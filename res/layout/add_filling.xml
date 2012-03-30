@@ -1,23 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollContainer"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-	<TextView android:text="@string/lbl_date" android:id="@+id/lbl_date" android:layout_height="wrap_content" android:layout_width="match_parent"></TextView>
-	<DatePicker android:layout_gravity="center_horizontal" android:id="@+id/date" android:layout_height="wrap_content" android:layout_width="wrap_content"></DatePicker>	
-			
-	<TextView android:layout_height="wrap_content" android:text="@string/lbl_odometer" android:id="@+id/lbl_odometer" android:layout_width="match_parent"></TextView>
-	<EditText android:layout_height="wrap_content" android:id="@+id/odometer" android:text="" android:layout_width="match_parent" android:inputType="number"></EditText>
-	
-	<TextView android:layout_height="wrap_content" android:text="@string/lbl_amount" android:id="@+id/lbl_amount" android:layout_width="match_parent"></TextView>
-	<EditText android:layout_height="wrap_content" android:id="@+id/amount" android:text="" android:layout_width="match_parent" android:inputType="numberDecimal"></EditText>
-	
-	<TextView android:layout_height="wrap_content" android:text="@string/lbl_price" android:id="@+id/lbl_price" android:layout_width="match_parent"></TextView>
-	<EditText android:layout_height="wrap_content" android:id="@+id/price" android:text="" android:layout_width="match_parent" android:inputType="numberDecimal"></EditText>
-	
-	
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
-<LinearLayout android:id="@+id/LinearLayout01" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="bottom">
-<Button android:layout_height="wrap_content" android:id="@+id/btn_save_filling" android:text="@string/btn_save_filling" android:layout_width="match_parent"></Button>
-</LinearLayout>
-</LinearLayout>
+        <TextView
+            android:id="@+id/lbl_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_date" >
+        </TextView>
+
+        <DatePicker
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" >
+        </DatePicker>
+
+        <TextView
+            android:id="@+id/lbl_odometer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_odometer" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/odometer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/lbl_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_amount" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:text="" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/lbl_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_price" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:text="" >
+        </EditText>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom" >
+
+            <Button
+                android:id="@+id/btn_save_filling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_save_filling" >
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

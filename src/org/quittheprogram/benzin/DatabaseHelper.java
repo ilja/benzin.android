@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	static final String colPrice = "Price";
 	
 	
-	static final String ORDER_BY = "Date DESC";
+	static final String ORDER_BY = "Odometer DESC";
 	
 	//static final String[] FROM = { colID, colDate, colOdometer, colAmount, colPrice, };
 	static final String[] FROM = { _ID, colDate, colOdometer, colAmount, colPrice };
