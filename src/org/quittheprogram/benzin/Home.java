@@ -13,7 +13,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class Home extends Activity implements OnClickListener {
-	 	
+	DatabaseHelper dbHelper; 	
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,12 +24,16 @@ public class Home extends Activity implements OnClickListener {
         View addFilling = findViewById(R.id.add_filling);
         addFilling.setOnClickListener(this);
         
-        TextView tv = (TextView)findViewById(R.id.home_text);
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        dbHelper = new DatabaseHelper(this);
         Cursor cursor = dbHelper.getFillings();
         startManagingCursor(cursor);
-        tv.setText("Total fillings: " + cursor.getCount());
+        updateTotalCount(cursor);
     }
+
+	private void updateTotalCount(Cursor cursor) {
+		TextView tv = (TextView)findViewById(R.id.home_text);        
+        tv.setText("Total fillings: " + cursor.getCount());
+	}
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -59,4 +64,10 @@ public class Home extends Activity implements OnClickListener {
     		break;
     	}
     }    
+    
+    @Override
+    public void onResume(){
+    	super.onResume();
+    	updateTotalCount(dbHelper.getFillings());    	
+    }
 }
