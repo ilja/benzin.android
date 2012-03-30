@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	//static final String[] FROM = { colID, colDate, colOdometer, colAmount, colPrice, };
 	static final String[] FROM = { _ID, colDate, colOdometer, colAmount, colPrice };
-	static final int[] TO = { R.id.rowid, R.id.rowDate };
+	static final int[] TO = { R.id.rowid, R.id.rowDate, R.id.rowOdometer, R.id.rowAmount, R.id.rowPrice };
 
 	public DatabaseHelper(Context context) {
 		super(context, dbName, null, 2);
