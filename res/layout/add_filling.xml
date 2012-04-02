@@ -15,13 +15,16 @@
             android:layout_height="wrap_content"
             android:text="@string/lbl_date" >
         </TextView>
-
-        <DatePicker
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
+
+        <EditText
+            android:id="@+id/dateDisplay"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" >
-        </DatePicker>
+            android:ems="10"
+            android:inputType="date" >
+
+            <requestFocus />
+        </EditText>
 
         <TextView
             android:id="@+id/lbl_odometer"
