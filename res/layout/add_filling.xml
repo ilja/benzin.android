@@ -15,22 +15,23 @@
             android:layout_height="wrap_content"
             android:text="@string/lbl_date" >
         </TextView>
-
-        <EditText
+    <TextView
             android:id="@+id/dateDisplay"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date" >
+            android:layout_height="wrap_content"            
+            style="@android:style/Widget.Holo.Spinner"            
+            android:inputType="none" >
 
-            <requestFocus />
-        </EditText>
+           
+        </TextView>
+      
 
         <TextView
             android:id="@+id/lbl_odometer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lbl_odometer" >
+             <requestFocus />
         </TextView>
 
         <EditText

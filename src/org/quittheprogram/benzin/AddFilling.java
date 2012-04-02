@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class AddFilling extends Activity implements OnClickListener {
 	DatabaseHelper dbHelper;
@@ -27,7 +28,7 @@ public class AddFilling extends Activity implements OnClickListener {
 	private int pickedDay;
 	static final int DATE_DIALOG_ID = 0;
 	private Button pickDate;
-	private EditText dateDisplay;
+	private TextView dateDisplay;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -37,7 +38,7 @@ public class AddFilling extends Activity implements OnClickListener {
 		dbHelper = new DatabaseHelper(this);
 		
 		//date display and click handler
-		dateDisplay = (EditText) findViewById(R.id.dateDisplay);		
+		dateDisplay = (TextView) findViewById(R.id.dateDisplay);		
 		dateDisplay.setOnClickListener(new View.OnClickListener() {			
 			public void onClick(View v) {
 				showDialog(DATE_DIALOG_ID);
@@ -70,17 +71,21 @@ public class AddFilling extends Activity implements OnClickListener {
 			    EditText amount = (EditText)findViewById(R.id.amount);
 			    EditText price = (EditText)findViewById(R.id.price);
 			    
-			    		    	    
-			    Date date = new Date(java.sql.Date.parse(c.getString(1)));
+				String createDate = c.getString(c.getColumnIndex("Date"));
+			    
+			    calendar.setTimeInMillis(java.sql.Date.parse(createDate));
+			    
+//			    calendar.setTime(java.sql.Date.valueOf((c.getString(1))));
+				pickedYear = calendar.get(Calendar.YEAR);
+				pickedMonth = calendar.get(Calendar.MONTH);
+				pickedDay = calendar.get(Calendar.DAY_OF_MONTH);
 			    			    
 			    // add values to form
 			    odometer.setText(Integer.toString(c.getInt(2)));
 			    amount.setText(Double.toString(c.getDouble(3)));
 			    price.setText(Double.toString(c.getDouble(4)));
-			    pickedYear = date.getYear()+1900;
-			    pickedMonth = date.getMonth();
-			    pickedDay = date.getDate();
-			    
+			
+			    updateDateDisplay();
 		    }		   	   
 	    }	    
 	}
@@ -109,6 +114,16 @@ public class AddFilling extends Activity implements OnClickListener {
     	}		
 	}
 		
+	@Override
+	protected Dialog onCreateDialog(int id){
+		switch (id) {
+		case DATE_DIALOG_ID:
+			return new DatePickerDialog(this, dateSetListener, pickedYear, pickedMonth, pickedDay);
+		}
+		return null;
+	}
+
+	
 	private int parseInt(EditText et){
 		int num = 0;
 		try {
@@ -146,13 +161,5 @@ public class AddFilling extends Activity implements OnClickListener {
 		}
 	};
 	
-	@Override
-	protected Dialog onCreateDialog(int id){
-		switch (id) {
-		case DATE_DIALOG_ID:
-			return new DatePickerDialog(this, dateSetListener, pickedYear, pickedMonth, pickedDay);
-		}
-		return null;
-	}
 
 }

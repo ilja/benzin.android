@@ -4,6 +4,7 @@ package org.quittheprogram.benzin;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import android.app.ListActivity;
@@ -43,21 +44,15 @@ public class Fillings extends ListActivity {
 			public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
 
 				if(view.getId() == R.id.rowDate){
+					
 					String createDate = cursor.getString(cursor.getColumnIndex("Date"));
-					
-					DateFormat df = SimpleDateFormat.getDateInstance();
-					Date date = new Date();
-					try {
-						date = df.parse(createDate);
-					} catch (ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();	
-					}
-					
-					
-					
-					//String formattedDate = (String) android.text.format.DateFormat.format("dd MMMM yyyy hh:mm", new Date(createDate));
-					String formattedDate = df.format(date);
+				    final Calendar calendar = Calendar.getInstance();
+				    calendar.setTimeInMillis(java.sql.Date.parse(createDate));
+				    
+				    String formattedDate  = new StringBuilder()
+						.append(calendar.get(Calendar.DAY_OF_MONTH)).append('-')
+						.append(calendar.get(Calendar.MONTH) + 1).append('-')
+						.append(calendar.get(Calendar.YEAR)).toString();
 					
 					((TextView) view).setText(formattedDate);
 					return true;
