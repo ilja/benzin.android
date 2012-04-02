@@ -45,10 +45,10 @@ public class Fillings extends ListActivity {
 
 				if(view.getId() == R.id.rowDate){
 					
-					String createDate = cursor.getString(cursor.getColumnIndex("Date"));
+					Long createDateInMillis = cursor.getLong(cursor.getColumnIndex("Date"));
 				    final Calendar calendar = Calendar.getInstance();
 				    try {
-				    	calendar.setTimeInMillis(java.sql.Date.parse(createDate));
+				    	calendar.setTimeInMillis(createDateInMillis);
 				    	
 				    	String formattedDate  = new StringBuilder()
 						.append(calendar.get(Calendar.DAY_OF_MONTH)).append('-')
@@ -57,7 +57,7 @@ public class Fillings extends ListActivity {
 					
 				    	((TextView) view).setText(formattedDate);
 					} catch (Exception e) {
-						((TextView) view).setText("niet te parsen date:" + createDate);
+						((TextView) view).setText("niet te parsen date:" + createDateInMillis);
 					}
 				    
 				    

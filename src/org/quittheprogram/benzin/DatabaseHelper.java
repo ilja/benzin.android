@@ -32,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE " + fillingsTable + " ("+ 
 				_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, " + 
-				colDate + " TEXT NOT NULL, " +
+				colDate + " INTEGER NOT NULL, " +
 				colOdometer + " INTEGER NOT NULL, " +
 				colAmount + " REAL NOT NULL, " +
 				colPrice + " REAL NOT NULL);");		
@@ -49,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void saveFilling(Date date, int odometer, double amount, double price, long _id){
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		cv.put(colDate, date.toString());
+		cv.put(colDate, date.getTime());
 		cv.put(colOdometer, odometer);
 		cv.put(colAmount, amount);
 		cv.put(colPrice, price);

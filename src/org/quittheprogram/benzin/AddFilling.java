@@ -71,9 +71,8 @@ public class AddFilling extends Activity implements OnClickListener {
 			    EditText amount = (EditText)findViewById(R.id.amount);
 			    EditText price = (EditText)findViewById(R.id.price);
 			    
-				String createDate = c.getString(c.getColumnIndex("Date"));
-			    
-			    calendar.setTimeInMillis(java.sql.Date.parse(createDate));
+			    Long createDateInMillis = c.getLong(c.getColumnIndex("Date"));		 
+			    calendar.setTimeInMillis(createDateInMillis);
 			    
 //			    calendar.setTime(java.sql.Date.valueOf((c.getString(1))));
 				pickedYear = calendar.get(Calendar.YEAR);
@@ -107,6 +106,7 @@ public class AddFilling extends Activity implements OnClickListener {
     				this.filling_id
     				);
     		
+    		Log.i(STORAGE_SERVICE, "storing year as: " + (pickedYear - 1900));
     		//Intent i = new Intent(this, Home.class);
     		//startActivity(i);
     		finish();
