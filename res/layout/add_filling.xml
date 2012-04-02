@@ -6,32 +6,34 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/lbl_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="8dp"
             android:text="@string/lbl_date" >
         </TextView>
-    <TextView
+    	<TextView
             android:id="@+id/dateDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"            
-            style="@android:style/Widget.Holo.Spinner"            
-            android:inputType="none" >
-
-           
+            style="@android:style/Widget.Holo.Spinner"
+            android:height="48dp"            
+            android:inputType="none" >           
         </TextView>
       
-
         <TextView
             android:id="@+id/lbl_odometer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="8dp"
             android:text="@string/lbl_odometer" >
-             <requestFocus />
+            <requestFocus />
         </TextView>
 
         <EditText
@@ -39,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:height="48dp"
             android:text="" >
         </EditText>
 
@@ -46,6 +49,7 @@
             android:id="@+id/lbl_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="8dp"
             android:text="@string/lbl_amount" >
         </TextView>
 
@@ -54,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
+            android:height="48dp"
             android:text="" >
         </EditText>
 
@@ -61,6 +66,7 @@
             android:id="@+id/lbl_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="8dp"
             android:text="@string/lbl_price" >
         </TextView>
 
@@ -69,22 +75,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
+            android:height="48dp"
             android:text="" >
         </EditText>
 
-        <LinearLayout
-            android:id="@+id/LinearLayout01"
+        <Button
+            android:id="@+id/btn_save_filling"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom" >
-
-            <Button
-                android:id="@+id/btn_save_filling"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_save_filling" >
-            </Button>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="@string/btn_save_filling" >
+       	</Button>
+        
     </LinearLayout>
 
 </ScrollView>
