@@ -47,14 +47,21 @@ public class Fillings extends ListActivity {
 					
 					String createDate = cursor.getString(cursor.getColumnIndex("Date"));
 				    final Calendar calendar = Calendar.getInstance();
-				    calendar.setTimeInMillis(java.sql.Date.parse(createDate));
-				    
-				    String formattedDate  = new StringBuilder()
+				    try {
+				    	calendar.setTimeInMillis(java.sql.Date.parse(createDate));
+				    	
+				    	String formattedDate  = new StringBuilder()
 						.append(calendar.get(Calendar.DAY_OF_MONTH)).append('-')
 						.append(calendar.get(Calendar.MONTH) + 1).append('-')
 						.append(calendar.get(Calendar.YEAR)).toString();
 					
-					((TextView) view).setText(formattedDate);
+				    	((TextView) view).setText(formattedDate);
+					} catch (Exception e) {
+						((TextView) view).setText("niet te parsen date:" + createDate);
+					}
+				    
+				    
+				    
 					return true;
 				}
 				return false;
