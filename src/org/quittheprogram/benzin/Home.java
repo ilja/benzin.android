@@ -1,5 +1,8 @@
 package org.quittheprogram.benzin;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -33,6 +36,39 @@ public class Home extends Activity implements OnClickListener {
 	private void updateTotalCount(Cursor cursor) {
 		TextView tv = (TextView)findViewById(R.id.home_text);        
         tv.setText("Total fillings: " + cursor.getCount());
+        
+        ArrayList<Filling> fillings = new ArrayList<Filling>();
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                	fillings.add(new Filling(
+                			cursor.getInt(cursor.getColumnIndex("Odometer")), 
+                			cursor.getInt(cursor.getColumnIndex("Amount")))
+                	);
+                	
+                } while (cursor.moveToNext());
+            }
+        }
+        int previousOdometer = 0;
+        int previousAmount = 0;
+        for(int i = fillings.size() -1; i >= 0 ; i--){
+        	Filling filling = (Filling)fillings.get(i);
+        	filling.setPreviousOdometer(previousOdometer);
+        	filling.setPreviousAmount(previousAmount);
+        	previousOdometer = filling.getOdometer(); 
+        	previousAmount = filling.getAmount();
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        
+        Iterator<Filling> iterator =  fillings.iterator();
+        while(iterator.hasNext()){
+        	Filling filling = iterator.next();
+        	sb.append("km: "+ filling.getDistance() +", l: "+ filling.getPreviousAmount() +", km / l: "+ filling.calculateLitresPerKilometer()+"\n");
+        }
+        
+        tv.setText(sb.toString());
+        
 	}
     
     @Override
