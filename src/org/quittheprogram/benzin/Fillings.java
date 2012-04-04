@@ -92,12 +92,9 @@ public class Fillings extends ListActivity {
 		dbHelper = new DatabaseHelper(this);
 		dbHelper.deleteFilling(filling.getId());
 		
-		//todo:
+		// refresh listview
 		ArrayList<Filling> fillings = dbHelper.getFillings2();
-        FillingAdapter adapter3 = new FillingAdapter(this, R.layout.filling, fillings);
-	        
-	    setListAdapter(adapter3);
-		//((FillingAdapter)getListView().getAdapter()).
+		((FillingAdapter)getListView().getAdapter()).Update(fillings);
 	}
 	
 	public void editFilling(int id){
