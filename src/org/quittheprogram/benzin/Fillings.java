@@ -103,7 +103,7 @@ public class Fillings extends ListActivity {
 		
 		Bundle bundle = new Bundle();
 		bundle.putLong("filling_id", filling.getId());
-		bundle.putString("Date", filling.getDate().toString());
+		bundle.putString("Date", filling.getFormattedDate());
 		bundle.putInt("Odometer", filling.getOdometer());
 		bundle.putString("Amount", Double.toString(filling.getAmount()));
 		bundle.putString("Price", Double.toString(filling.getPrice()));

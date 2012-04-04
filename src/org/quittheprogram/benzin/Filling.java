@@ -9,7 +9,7 @@ public class Filling {
 	private int previousOdometer;
 	private int previousAmount;
 	private double price;
-	private Calendar date = Calendar.getInstance();
+	private Calendar calendar = Calendar.getInstance();
 	
 	public Filling(int id, int odometer, int amount, double price, long dateInMillis) {
 		super();
@@ -18,7 +18,7 @@ public class Filling {
 		this.amount = amount;
 		this.price = price;
 		
-		date.setTimeInMillis(dateInMillis);
+		calendar.setTimeInMillis(dateInMillis);
 	}
 
 	public Filling(int odometer, int amount) {
@@ -27,8 +27,6 @@ public class Filling {
 		this.setAmount(amount);
 	}
 	
-	
-
 	public int getAmount() {
 		return amount;
 	}
@@ -80,27 +78,22 @@ public class Filling {
 		this.id = id;
 	}
 
-
-
 	public double getPrice() {
 		return price;
 	}
-
-
 
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
-
-
-	public Calendar getDate() {
-		return date;
+	public String getFormattedDate(){
+		return new StringBuilder()
+			.append(calendar.get(Calendar.DAY_OF_MONTH)).append('-')
+			.append(calendar.get(Calendar.MONTH) + 1).append('-')
+			.append(calendar.get(Calendar.YEAR)).toString();
 	}
 
-
-
-	public void setDate(Calendar date) {
-		this.date = date;
+	public void setCalendar(Calendar date) {
+		this.calendar = date;
 	}	
 }
