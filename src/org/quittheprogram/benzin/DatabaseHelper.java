@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			db.update(fillingsTable, cv, _ID+"=?", new String[] {String.valueOf(_id)});
 		}
 		
-		db.close();
+		
 	}
 	
 	public Cursor getFilling(long id){
@@ -107,9 +107,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
             }
         }
-        cursor.close();
+      
         return fillings;	
-	}
-	
+	}	
 	 
 }

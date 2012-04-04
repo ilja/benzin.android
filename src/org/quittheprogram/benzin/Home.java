@@ -32,6 +32,14 @@ public class Home extends Activity implements OnClickListener {
         startManagingCursor(cursor);
         updateStatistics(cursor);
     }
+    
+    @Override
+    protected void onDestroy(){    	
+		super.onDestroy();
+		if(dbHelper != null){
+			dbHelper.close();
+		}   	
+    }
 
 	private void updateStatistics(Cursor cursor) {
 		TextView tv = (TextView)findViewById(R.id.home_text);        

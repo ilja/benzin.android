@@ -88,6 +88,14 @@ public class AddFilling extends Activity implements OnClickListener {
 		    }		   	   
 	    }	    
 	}
+	
+    @Override
+    protected void onDestroy(){    	
+		super.onDestroy();
+		if(dbHelper != null){
+			dbHelper.close();
+		}   	
+    }
 
 	public void onClick(View v) {
 		switch (v.getId()){

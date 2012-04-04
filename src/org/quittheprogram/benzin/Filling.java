@@ -21,8 +21,6 @@ public class Filling {
 		date.setTimeInMillis(dateInMillis);
 	}
 
-
-
 	public Filling(int odometer, int amount) {
 		super();
 		this.setOdometer(odometer);

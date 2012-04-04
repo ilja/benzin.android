@@ -31,6 +31,7 @@ public class Fillings extends ListActivity {
 		
 		registerForContextMenu(getListView());
 		getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true); 
 				
 		dbHelper = new DatabaseHelper(this);
 	        
@@ -111,5 +112,13 @@ public class Fillings extends ListActivity {
 		intent.putExtras(bundle);
 		
 		startActivityForResult(intent, EDIT_FILLING);
+	}
+	
+	@Override
+	protected void onDestroy(){
+		super.onDestroy();
+		if(dbHelper != null){
+			dbHelper.close();
+		}
 	}
 }
