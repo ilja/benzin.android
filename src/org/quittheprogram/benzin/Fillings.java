@@ -1,12 +1,8 @@
 package org.quittheprogram.benzin;
 
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ArrayAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
@@ -36,43 +33,12 @@ public class Fillings extends ListActivity {
 		getActionBar().setHomeButtonEnabled(true);
 				
 		dbHelper = new DatabaseHelper(this);
-	    Cursor cursor = dbHelper.getFillings();
-        startManagingCursor(cursor);
-             
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.filling, cursor, DatabaseHelper.FROM, DatabaseHelper.TO);
+	        
+        ArrayList<Filling> fillings = dbHelper.getFillings2();
+        FillingAdapter adapter3 = new FillingAdapter(this, R.layout.filling, fillings);
         
-        ViewBinder viewBinder = new ViewBinder() {
-			
-			public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-
-				if(view.getId() == R.id.rowDate){
-					
-					Long createDateInMillis = cursor.getLong(cursor.getColumnIndex("Date"));
-				    final Calendar calendar = Calendar.getInstance();
-				    try {
-				    	calendar.setTimeInMillis(createDateInMillis);
-				    	
-				    	String formattedDate  = new StringBuilder()
-						.append(calendar.get(Calendar.DAY_OF_MONTH)).append('-')
-						.append(calendar.get(Calendar.MONTH) + 1).append('-')
-						.append(calendar.get(Calendar.YEAR)).toString();
-					
-				    	((TextView) view).setText(formattedDate);
-					} catch (Exception e) {
-						((TextView) view).setText("niet te parsen date:" + createDateInMillis);
-					}
-				    
-				    
-				    
-					return true;
-				}
-				return false;
-			}
-		};
-        adapter.setViewBinder(viewBinder);
-        
-        setListAdapter(adapter);
-		getListView().setTextFilterEnabled(true);		
+        setListAdapter(adapter3);
+		//getListView().setTextFilterEnabled(true);		
 	}
 	
 	
@@ -96,8 +62,7 @@ public class Fillings extends ListActivity {
 			return true;
 		default: 
 			return super.onContextItemSelected(item);
-		}
-		
+		}		
 	}
 	
 	@Override
@@ -122,22 +87,28 @@ public class Fillings extends ListActivity {
 	}
 	
 	public void deleteFilling(int id){
-		Cursor c =  (Cursor)getListView().getAdapter().getItem(id);
-		dbHelper = new DatabaseHelper(this);
-		dbHelper.deleteFilling(c.getLong(0));
+		Filling filling = (Filling)getListView().getAdapter().getItem(id);
 		
-		((SimpleCursorAdapter)getListView().getAdapter()).getCursor().requery();		
+		dbHelper = new DatabaseHelper(this);
+		dbHelper.deleteFilling(filling.getId());
+		
+		//todo:
+		ArrayList<Filling> fillings = dbHelper.getFillings2();
+        FillingAdapter adapter3 = new FillingAdapter(this, R.layout.filling, fillings);
+	        
+	    setListAdapter(adapter3);
+		//((FillingAdapter)getListView().getAdapter()).
 	}
 	
 	public void editFilling(int id){
-		Cursor c = (Cursor)getListView().getAdapter().getItem(id);
+		Filling filling = (Filling)getListView().getAdapter().getItem(id);
 		
 		Bundle bundle = new Bundle();
-		bundle.putLong("filling_id", c.getLong(0));
-		bundle.putString("Date", c.getString(1));
-		bundle.putInt("Odometer", c.getInt(2));
-		bundle.putString("Amount",c.getString(3));
-		bundle.putString("Price",c.getString(4));
+		bundle.putLong("filling_id", filling.getId());
+		bundle.putString("Date", filling.getDate().toString());
+		bundle.putInt("Odometer", filling.getOdometer());
+		bundle.putString("Amount", Double.toString(filling.getAmount()));
+		bundle.putString("Price", Double.toString(filling.getPrice()));
 		Intent intent = new Intent();
 		intent.setClass(this, AddFilling.class);
 		intent.putExtras(bundle);

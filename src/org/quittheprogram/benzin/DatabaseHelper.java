@@ -1,5 +1,6 @@
 package org.quittheprogram.benzin;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.content.ContentValues;
@@ -87,5 +88,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		Cursor cursor = db.query(fillingsTable, FROM, null, null, null, null, ORDER_BY);
 		
 		return cursor;
+	}
+	
+	public ArrayList<Filling> getFillings2(){
+		ArrayList<Filling> fillings = new ArrayList<Filling>();
+		Cursor cursor = this.getFillings();
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                	fillings.add(new Filling(
+                			cursor.getInt(cursor.getColumnIndex("_id")),
+                			cursor.getInt(cursor.getColumnIndex("Odometer")), 
+                			cursor.getInt(cursor.getColumnIndex("Amount")),
+                			cursor.getDouble(cursor.getColumnIndex("Price")),
+                			cursor.getLong(cursor.getColumnIndex("Date")))
+                	);
+                	
+                } while (cursor.moveToNext());
+            }
+        }
+        cursor.close();
+        return fillings;	
 	}
 }
