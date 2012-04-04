@@ -1,7 +1,5 @@
 package org.quittheprogram.benzin;
 
-import java.text.DecimalFormat;
-
 public class Filling {
 	private int odometer;
 	private int amount;
@@ -30,27 +28,6 @@ public class Filling {
 		this.odometer = odometer;
 	}
 
-
-	public void setPreviousOdometer(int previousOdometer) {
-		this.previousOdometer = previousOdometer;
-	}
-
-	public Double calculateLitresPerKilometer() {
-		if (previousAmount == 0)
-			return 0.0;
-		
-		
-		DecimalFormat twoDForm = new DecimalFormat("#.##");
-		return Double.valueOf(twoDForm.format((getDistance() / previousAmount)));		
-	}
-
-	public int getDistance() { 
-		if(odometer == 0)
-			return 0;
-		
-		return odometer - previousOdometer;
-	}
-
 	public void setPreviousAmount(int previousAmount) {
 		this.previousAmount = previousAmount;		
 	}
@@ -58,6 +35,23 @@ public class Filling {
 	public int getPreviousAmount(){
 		return previousAmount;
 	}
-	
-	
+
+	public void setPreviousOdometer(int previousOdometer) {
+		this.previousOdometer = previousOdometer;
+	}	
+
+	public Double calculateLitresPerKilometer() {
+		if (previousAmount == 0)
+			return 0.0;
+				
+		double value = getDistance() / (double)previousAmount;		
+		return (double)Math.round(value * 100) / 100;
+	}
+
+	public int getDistance() { 
+		if(previousOdometer == 0)
+			return 0;
+		
+		return odometer - previousOdometer;
+	}	
 }
