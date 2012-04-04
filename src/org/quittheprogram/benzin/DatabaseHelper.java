@@ -78,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		int c = db.delete(fillingsTable, _ID+"=?", new String[]{Long.toString(id)});
 		//todo check c = 1
-		db.close();
+		
 	}
 	
 	public Cursor getFillings(){
@@ -110,4 +110,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return fillings;	
 	}
+	
+	 
 }

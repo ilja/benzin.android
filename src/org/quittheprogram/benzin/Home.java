@@ -30,10 +30,10 @@ public class Home extends Activity implements OnClickListener {
         dbHelper = new DatabaseHelper(this);
         Cursor cursor = dbHelper.getFillings();
         startManagingCursor(cursor);
-        updateTotalCount(cursor);
+        updateStatistics(cursor);
     }
 
-	private void updateTotalCount(Cursor cursor) {
+	private void updateStatistics(Cursor cursor) {
 		TextView tv = (TextView)findViewById(R.id.home_text);        
         tv.setText("Total fillings: " + cursor.getCount());
         
@@ -109,6 +109,6 @@ public class Home extends Activity implements OnClickListener {
     @Override
     public void onResume(){
     	super.onResume();
-    	updateTotalCount(dbHelper.getFillings());    	
+    	updateStatistics(dbHelper.getFillings());    	
     }
 }
