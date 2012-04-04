@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,7 +33,8 @@ public class Fillings extends ListActivity {
 		super.onCreate(savedInstanceState);
 		
 		registerForContextMenu(getListView());
-		
+		getActionBar().setHomeButtonEnabled(true);
+				
 		dbHelper = new DatabaseHelper(this);
 	    Cursor cursor = dbHelper.getFillings();
         startManagingCursor(cursor);
@@ -96,6 +98,27 @@ public class Fillings extends ListActivity {
 			return super.onContextItemSelected(item);
 		}
 		
+	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu){
+    	super.onCreateOptionsMenu(menu);
+    	MenuInflater inflater = getMenuInflater();
+    	inflater.inflate(R.menu.menu, menu);
+    	return true;
+    }
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch (item.getItemId()){
+			case android.R.id.home:
+				Intent intent = new Intent(this, Home.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}		
 	}
 	
 	public void deleteFilling(int id){

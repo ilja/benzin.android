@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/show_all" android:title="@string/show_all_label" />
-	<item android:id="@+id/settings" android:title="@string/settings_label" />
+	<item android:id="@+id/show_all" 
+	      android:title="@string/show_all_label"
+	      android:icon="@drawable/collectionlist"
+	      android:showAsAction="ifRoom" />
+	<item android:id="@+id/settings" 
+	      android:title="@string/settings_label" />
 
 </menu>

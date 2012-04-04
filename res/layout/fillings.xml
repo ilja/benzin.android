@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent" 
-	android:layout_height="fill_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
 	
 	<!-- Note built-in ids for 'list' and 'empty' -->	
 	<ListView 
@@ -10,7 +11,9 @@
 		android:layout_height="wrap_content"
 		android:paddingLeft="16dp"
 		android:paddingRight="16dp" 
-	/>
+	>
+	    <!-- Preview: listitem=@layout/filling -->
+	</ListView>
 		
 	<TextView android:id="@android:id/empty" 
 	    android:layout_width="wrap_content"
