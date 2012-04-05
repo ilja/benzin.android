@@ -19,7 +19,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	static final String colAmount = "Amount";
 	static final String colPrice = "Price";
 	
-	static final String ORDER_BY = "Odometer DESC";
+	static final String ORDER_BY_ODOMETER_DESC = "Odometer DESC";
+	static final String ORDER_BY_ODOMETER_ASC = "Odometer ASC";
 
 	static final String[] FROM = { _ID, colDate, colOdometer, colAmount, colPrice };
 	static final int[] TO = { R.id.rowid, R.id.rowDate, R.id.rowOdometer, R.id.rowAmount, R.id.rowPrice };
@@ -85,7 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// Perform a managed query. The Activity will handle closing
 		// and re-querying the cursor when needed.
 		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.query(fillingsTable, FROM, null, null, null, null, ORDER_BY);
+		Cursor cursor = db.query(fillingsTable, FROM, null, null, null, null, ORDER_BY_ODOMETER_ASC);
 		
 		return cursor;
 	}

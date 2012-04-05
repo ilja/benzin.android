@@ -3,6 +3,8 @@ package org.quittheprogram.benzin;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -36,6 +38,7 @@ public class Fillings extends ListActivity {
 		dbHelper = new DatabaseHelper(this);
 	        
         ArrayList<Filling> fillings = dbHelper.getFillings2();
+        Collections.reverse(fillings);
         FillingAdapter adapter3 = new FillingAdapter(this, R.layout.filling, fillings);
         
         setListAdapter(adapter3);

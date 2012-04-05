@@ -1,6 +1,7 @@
 package org.quittheprogram.benzin;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 import android.app.Activity;
@@ -42,37 +43,23 @@ public class Home extends Activity implements OnClickListener {
     }
 
 	private void updateStatistics(Cursor cursor) {
-		TextView tv = (TextView)findViewById(R.id.home_text);        
-        tv.setText("Total fillings: " + cursor.getCount());
+		TextView tv = (TextView)findViewById(R.id.home_text);               
+        ArrayList<Filling> fillings = dbHelper.getFillings2();
         
-        ArrayList<Filling> fillings = new ArrayList<Filling>();
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                	fillings.add(new Filling(
-                			cursor.getInt(cursor.getColumnIndex("Odometer")), 
-                			cursor.getInt(cursor.getColumnIndex("Amount")))
-                	);
-                	
-                } while (cursor.moveToNext());
-            }
-        }
-        int previousOdometer = 0;
-        int previousAmount = 0;
-        for(int i = fillings.size() -1; i >= 0 ; i--){
-        	Filling filling = (Filling)fillings.get(i);
-        	filling.setPreviousOdometer(previousOdometer);
-        	filling.setPreviousAmount(previousAmount);
-        	previousOdometer = filling.getOdometer(); 
-        	previousAmount = filling.getAmount();
+        for(int i = 1; i < fillings.size(); i ++){        	
+        	Filling previousfilling = fillings.get(i-1);        	
+        	Filling filling = fillings.get(i);
+        	previousfilling.setEndOdometer(filling.getOdometer());
         }
         
         StringBuilder sb = new StringBuilder();
+        sb.append("Total fillings: " + fillings.size()+"\n");
         
-        Iterator<Filling> iterator =  fillings.iterator();
-        while(iterator.hasNext()){
-        	Filling filling = iterator.next();
-        	sb.append("km: "+ filling.getDistance() +", l: "+ filling.getPreviousAmount() +", km / l: "+ filling.calculateLitresPerKilometer()+"\n");
+        Collections.reverse(fillings); //we wan't the newest at the top
+           
+        for(Filling filling: fillings){
+        	
+        	sb.append("Distance: "+ filling.getDistance() +"km, l: "+ filling.getAmount() +", km/l: "+ filling.calculateLitresPerKilometer()+"\n");
         }
         
         tv.setText(sb.toString());

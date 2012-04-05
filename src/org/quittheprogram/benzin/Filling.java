@@ -7,6 +7,7 @@ public class Filling {
 	private int odometer;
 	private int amount;
 	private int previousOdometer;
+	private int endOdometer;
 	private int previousAmount;
 	private double price;
 	private Calendar calendar = Calendar.getInstance();
@@ -56,18 +57,18 @@ public class Filling {
 	}	
 
 	public Double calculateLitresPerKilometer() {
-		if (previousAmount == 0)
+		if (amount == 0)
 			return 0.0;
 				
-		double value = getDistance() / (double)previousAmount;		
+		double value = getDistance() / (double)amount;		
 		return (double)Math.round(value * 100) / 100;
 	}
 
 	public int getDistance() { 
-		if(previousOdometer == 0)
+		if(endOdometer == 0)
 			return 0;
 		
-		return odometer - previousOdometer;
+		return endOdometer - odometer;
 	}
 
 	public int getId() {
@@ -95,5 +96,13 @@ public class Filling {
 
 	public void setCalendar(Calendar date) {
 		this.calendar = date;
+	}
+
+	public int getEndOdometer() {
+		return endOdometer;
+	}
+
+	public void setEndOdometer(int nextOdometer) {
+		this.endOdometer = nextOdometer;
 	}	
 }
